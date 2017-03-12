@@ -7,8 +7,8 @@ Type (Demo Purposes Only).
 For security purposes you really should always keep any auto-location 
 sharing off in all social media applications no matter how cool or useful the app is. 
 
-## Application Pitch
-Its 'Twitter for Locations'. Users sign up and instead of posting their thoughts they 
+## Application Pitch: My Spaces
+My Spaces is 'Twitter for Locations'. Users sign up and instead of posting their thoughts they 
 are posting their locations! Users can set up their own public spaces (school, work, parks, 
 theaters, etc) that they want to shout out to the wold that they are there! You can follow your 
 friends to get a list of their locations, and when you login you can see a feed of where your 
