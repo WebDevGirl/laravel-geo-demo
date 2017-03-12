@@ -32,14 +32,26 @@ it gets broadcasted out!
   ``locations of concern`` I can be ``notfied``
 - As a ``Subscriber``, I should not be notfied if a ``friend`` is ``broadcasting`` 
   a ``public space`` that I am not ``following``
-- As a ``Mover`` 
+
 
 ## Notes
-  - **Mover** - Someone who is moving around generating ``location data`` and will be defining their ``public spaces``
-  - **Subscriber** - Someone who is ``friends`` with a mover and is ``following`` a specific shared space.
-  - **Public Spaces** - A geographical location shape that a ``mover` has pre-defined as public for themselves.
-  - **Location of Concern** - A ``public space`` that a ``subscriber`` has defined to ``follow`` from a specific ``mover`` that is currently being ``broadcasted``
- 
+- **Mover** - Someone who is moving around generating ``location data`` and will be defining their ``public spaces``
+- **Subscriber** - Someone who is ``friends`` with a mover and is ``following`` a specific shared space.
+- **Public Spaces** - A geographical location shape that a ``mover`` has pre-defined as public for themselves.
+- **Location of Concern** - A ``public space`` that a ``subscriber`` has defined to ``follow`` from a specific ``mover`` that is currently being ``broadcasted``
+  
+## Tables
+- **Users**
+  - First Name
+  - Last Name
+  - Tagline
+- **Spaces** <-- geofences (polygon)
+ - Title
+ - canBroadcast
+- **Markers** <-- space / geofence long/lat points. 
+- **Following** (user_user) <-- this generate subscriber's friend list
+- **Watching** (space_user) <-- this generate subscriber's friend feed
+- **Broadcasts** (space_user) <-- this generates mover's profile feed
 
 ## Manual SQL That Needs to be Translation into Laravel
 
