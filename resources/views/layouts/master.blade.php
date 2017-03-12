@@ -1,12 +1,15 @@
 
 <!DOCTYPE html>
-<html class="{{ Request::path() }}" lang="en">
+<html class="{{ Request::path() }}" lang="{{ config('app.locale') }}">
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
     <meta name="author" content="">
     <link rel="icon" href="{{ asset('favicon.ico')}}">
+
+    <!-- CSRF Token -->
+    <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <title>{{ config('app.name', 'Title') }}</title>
 
@@ -15,6 +18,13 @@
     
     <!-- Custom styles for this template -->
     <link rel="stylesheet" type="text/css" href="{{asset('css/app.css')}}">
+
+    <!-- Scripts -->
+    <script>
+        window.Laravel = {!! json_encode([
+            'csrfToken' => csrf_token(),
+        ]) !!};
+    </script>
   </head>
 
   <body>
