@@ -37,8 +37,8 @@ friends have recently been. Visiting someone's profile will show you recent publ
   - Last Name
   - Tagline
 - **Spaces** <-- geofences (polygon)
- - Title
- - canBroadcast
+  - Title
+  - canBroadcast <-- endable/disable for broadcasting
 - **Markers** <-- space / geofence long/lat points. 
 - **Following** (user_user) <-- this generate subscriber's friend list
 - **Watching** (space_user) <-- this generate subscriber's friend feed
