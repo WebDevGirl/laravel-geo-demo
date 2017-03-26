@@ -12,33 +12,24 @@ My Spaces is 'Twitter for Locations'. Users sign up and instead of posting their
 are posting their locations! Users can set up their own public spaces (school, work, parks, 
 theaters, etc) that they want to shout out to the wold that they are there! You can follow your 
 friends to get a list of their locations, and when you login you can see a feed of where your 
-friends have recently been. Even if you are not friends if you go to someone's profile you 
-can see a feed of where they have recently been that they wanted to share. 
-
-What makes this different then checkin system? Its automatic! As soon as you enter your public 
-it gets broadcasted out!
+friends have recently been. Visiting someone's profile will show you recent public spaces of theirs that they have recently visited.
 
 ## Stories
 - As a ``Mover`` my ``current location`` should not be shared by default
 - As a ``Mover``, I want to be able to define my ``public spaces`` that is allowed to 
   ``broadcast`` my ``current location``
-- As a ``Mover``, I would like a ``public profile`` to display my ``public spaces`` 
-  so people can ``follow`` me and ``subscribe`` to my ``public spaces``.
-- As a ``Mover``, I would like to have a ``location feed`` to display my recent 
-  ``current locations`` that have been in ``public spaces`` so that anyone can see where i've been. 
-- As a ``Subscriber``, I would like be able to add ``friends`` to ``follow`` 
+- As a ``Mover``, I would like my ``profile`` to display a feed of my ``broadcasted public spaces``.
+- As a ``Mover``, I would like people to be able to ``follow`` and see my ``broadcasted public spaces`` on their own ``following feed``. 
+- As a ``Watcher``, I would like be able to add ``friends`` to ``follow`` 
   so that I narrow down.
-- As a ``Subscriber``, I would like to know when my ``friends` have entered 
-  ``locations of concern`` I can be ``notfied``
-- As a ``Subscriber``, I should not be notfied if a ``friend`` is ``broadcasting`` 
-  a ``public space`` that I am not ``following``
+- As a ``Watcher``, I would like to know where those I am ``following` have recently been.
 
 
 ## Notes
 - **Mover** - Someone who is moving around generating ``location data`` and will be defining their ``public spaces``
-- **Subscriber** - Someone who is ``friends`` with a mover and is ``following`` a specific shared space.
-- **Public Spaces** - A geographical location shape that a ``mover`` has pre-defined as public for themselves.
-- **Location of Concern** - A ``public space`` that a ``subscriber`` has defined to ``follow`` from a specific ``mover`` that is currently being ``broadcasted``
+- **Watcher** - Someone who is ``following`` a ``mover``.
+- **Public Spaces** - A geographical location shape that a ``mover`` has pre-defined as a ``public space`` for themselves.
+
   
 ## Tables
 - **Users**
@@ -46,12 +37,13 @@ it gets broadcasted out!
   - Last Name
   - Tagline
 - **Spaces** <-- geofences (polygon)
- - Title
- - canBroadcast
+  - Title
+  - canBroadcast <-- endable/disable for broadcasting
 - **Markers** <-- space / geofence long/lat points. 
 - **Following** (user_user) <-- this generate subscriber's friend list
 - **Watching** (space_user) <-- this generate subscriber's friend feed
 - **Broadcasts** (space_user) <-- this generates mover's profile feed
+  - When a mover's current_location is in a public space then it will be in the broast table
 
 ## Manual SQL That Needs to be Translation into Laravel
 
