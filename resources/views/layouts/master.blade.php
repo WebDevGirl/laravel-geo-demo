@@ -31,13 +31,12 @@
     @include('layouts.nav')
 
     <div class="container">
-
-      @yield('content')
-
+      <div class="row">
+        @yield('content')
+      </div><!-- /.row -->
     </div><!-- /.container -->
 
     @include('layouts.footer')
    
-
   </body>
 </html>

@@ -60,6 +60,20 @@
                             </div>
                         </div>
 
+                        <div class="form-group{{ $errors->has('tagline') ? ' has-error' : '' }}">
+                            <label for="tagline" class="col-md-4 control-label">Tagline</label>
+
+                            <div class="col-md-12">
+                                <input id="tagline" type="tagline" class="form-control" name="tagline" value="{{ old('tagline') }}" required>
+
+                                @if ($errors->has('tagline'))
+                                    <span class="help-block">
+                                        <strong>{{ $errors->first('tagline') }}</strong>
+                                    </span>
+                                @endif
+                            </div>
+                        </div>
+
                         <div class="form-group">
                             <div class="col-md-6 col-md-offset-4">
                                 <button type="submit" class="btn btn-primary">
