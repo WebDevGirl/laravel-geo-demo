@@ -14,7 +14,9 @@ class UserController extends Controller
      */
     public function index()
     {
-        //
+        $users = User::all();  
+        $following = \Auth::user()->following->pluck('id')->toArray();  
+        return view('users.index')->with(compact('users', 'following'));
     }
 
     /**
@@ -61,6 +63,18 @@ class UserController extends Controller
     {
         \Auth::user()->following()->syncWithoutDetaching([$user->id]);
         return redirect('users/'.$user->id)->with('status', 'You are now following this user');
+    }
+
+    /**
+     * Unfollow a User
+     *
+     * @param  User $user
+     * @return \Illuminate\Http\Response
+     */
+    public function unfollow(User $user)
+    {
+        \Auth::user()->following()->detach($user->id);
+        return redirect('users')->with('status', 'You are not longer following '.$user->name);
     }
 
 }

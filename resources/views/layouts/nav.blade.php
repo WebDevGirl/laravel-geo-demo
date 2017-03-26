@@ -3,7 +3,7 @@
     <span class="navbar-toggler-icon"></span>
   </button>
   
-  <a class="navbar-brand" href="#">
+  <a class="navbar-brand" href="{{ route('home') }}"">
   	<img src='{{ asset('images/logo.png')}}' width="30" height="30" class="d-inline-block align-top" alt="Logo"> 
   	{{ config('app.name', 'Title') }}
   </a>
@@ -11,8 +11,12 @@
   <div class="collapse navbar-collapse" id="navbarsExampleDefault">
     <ul class="navbar-nav mr-auto">
       <li class="nav-item active">
-        <a class="nav-link" href="#">Home</a>
+        <a class="nav-link" href="{{ route('home') }}"">Home</a>
       </li>
+      <li class="nav-item active">
+        <a class="nav-link" href="{{ route('userlist') }}"">Users</a>
+      </li>
+
     </ul>
 
     <!-- Right Side Of Navbar -->

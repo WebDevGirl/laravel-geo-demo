@@ -23,8 +23,7 @@ class HomeController extends Controller
      */
     public function index()
     {
-        
-        $following = \Auth::user()->following;
+        $following = \Auth::user()->following->sortBy('name');
         return view('home', compact('following'));
     }
 }
