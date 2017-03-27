@@ -3,8 +3,7 @@
 @section('content')
 	<div class="app-header">
       <div class="container">
-        <h1 class="app-title">{{ $user->name }}</h1>
-        <p class="lead app-description">{{ $user->tagline }}</p>
+        <h1 class="app-title">{{ $space->title }}</h1>
       </div>
     </div>
 
@@ -15,8 +14,8 @@
     @endif
 
 	<div class="col-sm-12 app-main">
-	@foreach($spaces as $space) 
-        {{ $space->title }} <a href="{{ route('space', ['id'=>$space->id])}}"><br>
+    @foreach($markers as $marker) 
+      {{$marker->long}}<br>
     @endforeach
 	</div><!-- /.app-main -->
 

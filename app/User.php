@@ -35,5 +35,9 @@ class User extends Authenticatable
         return $this->belongsToMany('App\User', 'following', 'follower_id','following_id');
     }
 
+    public function spaces()
+    {
+        return $this->hasMany('App\Space');
+    }
 
 }

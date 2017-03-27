@@ -15,7 +15,8 @@ class UserController extends Controller
     public function index()
     {
         $users = User::all();  
-        $following = \Auth::user()->following->pluck('id')->toArray();  
+        $following = \Auth::user()->following;  
+        $following = ($following) ? $following->pluck('id')->toArray() : array() ; 
         return view('users.index')->with(compact('users', 'following'));
     }
 
@@ -27,7 +28,8 @@ class UserController extends Controller
      */
     public function show(User $user)
     {
-        return view('users.show')->with('user', $user);
+        $spaces = $user->spaces;
+        return view('users.show')->with(compact('user', 'spaces'));
     }
 
     /**

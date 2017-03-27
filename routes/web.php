@@ -20,3 +20,6 @@ Route::get('/users','UserController@index')->name('userlist');
 
 Route::get('/users/{user}/follow','UserController@follow')->name('follow');
 Route::get('/users/{user}/unfollow','UserController@unfollow')->name('unfollow');
+
+Route::get('/spaces/{space}','SpaceController@show')->name('space');
+Route::get('/spaces','SpaceController@index')->name('spaces');
