@@ -142,17 +142,18 @@ class SpacesTableSeeder extends Seeder
         ];
 
         // Grab jane user to bind all geofences to
-        $user = App\User::whereEmail('jane@test.com')->first();
+        $user_ids = App\User::whereIn('email',['jane@test.com', 'john@test.com'])->pluck('id')->toArray();
 
         // Create Geofences w/ Markers
         foreach($geofences as $index=>$geofence) {
             $space = factory(App\Space::class)->create([
-                'user_id' => $user->id,
+                'user_id' => $user_ids[array_rand($user_ids)],
                 'title' => $geofence['title'],
                 'type' => $geofence['type'],
             ]);
 
-        $space->generateGeodataAndMarkers($geofence['geodata']);
+            //  Generate geodata and pointdata
+            $space->generateGeodataAndMarkers($geofence['geodata']);
         }
 
     }
