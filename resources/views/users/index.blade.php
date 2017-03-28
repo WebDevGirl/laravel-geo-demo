@@ -2,7 +2,7 @@
 
 @section('content')
 	<div class="app-header">
-		user list
+		<h2>User List</h2>
   </div>
 
 	@if (session('status'))
@@ -27,6 +27,7 @@
 					<td>{{$user->name}}</td>
 					<td>{{$user->email}}</td>
 					<td>
+						<a class="btn btn-sm btn-info" href="{{ route('profile',['id' => $user->id]) }}" role="button">View</a>
 						@if (in_array($user->id, $following))
 							<a class="btn btn-sm btn-warning" href="{{ route('unfollow',['id' => $user->id]) }}" role="button">Unfollow</a>
 						@else

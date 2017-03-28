@@ -4,6 +4,7 @@
 	<div class="app-header">
       <div class="container">
         <h1 class="app-title">{{ $space->title }}</h1>
+        <p class="lead app-description">By {{ $space->user->name }}</p>
       </div>
     </div>
 
@@ -14,9 +15,9 @@
     @endif
 
 	<div class="col-sm-12 app-main">
-    @foreach($markers as $marker) 
-      {{$marker->long}}<br>
-    @endforeach
+   {!! $map['html'] !!}
 	</div><!-- /.app-main -->
 
+  {!! $map['js'] !!}
 @endsection
+

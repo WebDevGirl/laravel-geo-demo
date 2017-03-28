@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Space;
+use Gmaps;
 
 class SpaceController extends Controller
 {
@@ -14,7 +15,8 @@ class SpaceController extends Controller
      */
     public function index()
     {
-        //
+        $spaces = Space::with('user')->get();
+        return view('spaces.index')->with(compact('spaces'));
     }
 
     /**
@@ -46,8 +48,30 @@ class SpaceController extends Controller
      */
     public function show(Space $space)
     {
-        $markers = $space->markers;
-        return view('spaces.show')->with(compact('space', 'markers'));
+        /* Lazy Eager Load */
+        $space->load('markers', 'user');
+
+        /* Google Maps Config */
+        $point = $space->markers->first();
+        $config = array();
+        $config['center'] = $point->lat.", ".$point->long;
+        $config['zoom'] = '18';
+        Gmaps::initialize($config);
+
+        /* Create Space on Map */
+        $polygon = array();      
+        foreach($space->markers as $marker) {
+            $polygon['points'][] = $marker->lat . ', ' . $marker->long;
+        }
+        $polygon['strokeColor'] = '#000099';
+        $polygon['fillColor'] = '#000099';
+        Gmaps::add_polygon($polygon);
+
+        /* Create Map */
+        $map = Gmaps::create_map();
+
+        /* Return View */
+        return view('spaces.show')->with(compact('space', 'map'));
     }
 
     /**

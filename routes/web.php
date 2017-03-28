@@ -16,7 +16,7 @@ Route::get('/', 'HomeController@index')->name('home');
 Route::get('/home', 'HomeController@index');
 
 Route::get('/users/{user}','UserController@show')->name('profile');
-Route::get('/users','UserController@index')->name('userlist');
+Route::get('/users','UserController@index')->name('users');
 
 Route::get('/users/{user}/follow','UserController@follow')->name('follow');
 Route::get('/users/{user}/unfollow','UserController@unfollow')->name('unfollow');

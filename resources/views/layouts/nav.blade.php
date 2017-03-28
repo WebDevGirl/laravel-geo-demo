@@ -14,7 +14,10 @@
         <a class="nav-link" href="{{ route('home') }}"">Home</a>
       </li>
       <li class="nav-item active">
-        <a class="nav-link" href="{{ route('userlist') }}"">Users</a>
+        <a class="nav-link" href="{{ route('users') }}"">Users</a>
+      </li>
+      <li class="nav-item active">
+        <a class="nav-link" href="{{ route('spaces') }}"">Spaces</a>
       </li>
 
     </ul>
