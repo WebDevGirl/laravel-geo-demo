@@ -19,6 +19,9 @@
       <li class="nav-item active">
         <a class="nav-link" href="{{ route('spaces') }}"">Spaces</a>
       </li>
+      <li class="nav-item active">
+        <a class="nav-link" href="{{ route('spaces-test') }}"">Test</a>
+      </li>
 
     </ul>
 

@@ -107,4 +107,62 @@ class SpaceController extends Controller
     {
         //
     }
+
+        /**
+     * Display the specified resource.
+     *
+     * @param  Space  $space
+     * @return \Illuminate\Http\Response
+     */
+    public function test()
+    {
+        return view('spaces.test.index');
+    }
+
+    /**
+     * Display the specified resource.
+     *
+     * @param  Space  $space
+     * @return \Illuminate\Http\Response
+     */
+    public function testView($lat, $long)
+    {
+        /* Google Maps Config */
+        $config = array();
+        $config['center'] = $lat.", ".$long;
+        $config['zoom'] = '18';
+        Gmaps::initialize($config);
+
+        /* Add Marker */
+        $marker['position'] = $lat . ', ' . $long;
+        Gmaps::add_marker($marker);
+
+        /* Get all spaces that intersect with this point */
+        $spaces = Space::with(['markers' => function($q){
+            $q->orderBy('markers.order_id', 'desc');
+        }])->whereIntersects($lat, $long)->get();
+
+         /* Draw Spaces */
+        foreach($spaces as $space) {
+            $markers = $space->markers;
+            
+            /* Build lines */
+            $polygon = array();
+            foreach($markers as $marker) {
+                $polygon['points'][] = $marker->lat . ', ' . $marker->long;
+            }
+
+            /* Draw Line */
+            $polygon['strokeColor'] = '#000099';
+            $polygon['fillColor'] = '#000099';
+            Gmaps::add_polygon($polygon);
+
+        }
+
+        /* Create Map */
+        $map = Gmaps::create_map();
+
+        /* Return Map and Spaces */
+        return view('spaces.test.show')->with(compact('map', 'spaces'));
+    }
 }

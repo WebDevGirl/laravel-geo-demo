@@ -49,6 +49,10 @@ class Space extends Model
     |
     */
 
+    public function scopeWhereIntersects($query, $lat, $long) {
+        return $query->whereRaw("Intersects(POINT($lat,$long), geodata)");
+    }
+
 
     /*
     |--------------------------------------------------------------------------

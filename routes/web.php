@@ -23,3 +23,5 @@ Route::get('/users/{user}/unfollow','UserController@unfollow')->name('unfollow')
 
 Route::get('/spaces/{space}','SpaceController@show')->name('space');
 Route::get('/spaces','SpaceController@index')->name('spaces');
+Route::get('/spaces-test','SpaceController@test')->name('spaces-test');
+Route::get('/spaces-test/{lat}/{long}','SpaceController@testView')->name('spaces-test-view');
