@@ -89,10 +89,9 @@ class Space extends Model
             foreach($geoData as $key => $coord) {
                 $coords[] = $coord['lat'] . ' ' . $coord['long'];
 
-                $marker = Marker::create([
+                $marker = $this->markers()->create([
                     'lat'           => $coord['lat'],
                     'long'          => $coord['long'],
-                    'space_id'   	=> $this->id,
                     'order_id'      => $key+1,
                 ]);
 

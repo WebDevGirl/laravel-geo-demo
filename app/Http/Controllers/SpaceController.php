@@ -8,6 +8,11 @@ use Gmaps;
 
 class SpaceController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -26,7 +31,25 @@ class SpaceController extends Controller
      */
     public function create()
     {
-        //
+       /* Google Maps Config */
+        $config = array();
+        $config['center']    = "34.2423371, -118.5289745";
+        $config['zoom'] = '18';
+        $config['drawing'] = true;
+        $config['drawingDefaultMode'] = 'polygon';
+        $config['drawingModes'] = array('circle','rectangle','polygon');
+        $config['onclick'] = '';
+      
+
+        /* Add functions to listeners (set in scripts.js) */
+        $config['drawingOnComplete'] = array('circle'=>'drawingOnCompleteCirlce(event)', 'polygon'=>'drawingOnCompletePolygon(event)');
+        $config['drawingOnEdit'] = array('circle'=>'drawingOnEditCirlce()', 'polygon'=>'drawingOnEditPolygon()');
+
+        /* Create Map */
+        Gmaps::initialize($config);
+        $map = Gmaps::create_map();
+
+        return view('spaces.create', compact('map'));
     }
 
     /**
@@ -37,7 +60,23 @@ class SpaceController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        /* Validate Inputs */       
+        $this->validate($request, [
+                'title'             =>'required',
+                'geodata'           =>'required',
+            ]
+        );
+
+        /* Generate New Space */
+        $space = \Auth::user()->spaces()->create([
+            'title' => $request->input('title'),
+            'type' => 'polygon',
+        ]);
+
+        /* Add geodata and markers */
+        $geodata = json_decode($request->input('geodata'),true);
+        $space->generateGeodataAndMarkers($geodata);
+        return redirect()->route('space', [$space]);
     }
 
     /**

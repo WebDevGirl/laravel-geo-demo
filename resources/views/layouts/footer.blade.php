@@ -9,4 +9,6 @@
 
 
 <!-- Scripts -->
-<script src="{{ asset('js/app.js') }}"></script><!-- Scripts -->
+<script src="{{ asset('js/app.js') }}"></script>
+<script src="{{ asset('js/maps.js') }}"></script>
+<!-- Scripts -->

@@ -21,11 +21,15 @@ Route::get('/users','UserController@index')->name('users');
 Route::get('/users/{user}/follow','UserController@follow')->name('follow');
 Route::get('/users/{user}/unfollow','UserController@unfollow')->name('unfollow');
 
+Route::get('/spaces/create','SpaceController@create')->name('space-create');
+Route::post('/spaces','SpaceController@store')->name('spaces-store');
 Route::get('/spaces/{space}','SpaceController@show')->name('space');
 Route::get('/spaces','SpaceController@index')->name('spaces');
+
+
+
 Route::get('/spaces-test','SpaceController@test')->name('spaces-test');
 Route::get('/spaces-test/{lat}/{long}','SpaceController@testView')->name('spaces-test-view');
 
 Route::get('/broadcasts/{broadcast}','BroadcastController@show')->name('broadcast');
-
 Route::get('/trackings/{lat}/{long}','BroadcastController@trackings')->name('trackings');
