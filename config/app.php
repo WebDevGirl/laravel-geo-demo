@@ -176,7 +176,10 @@ return [
         // App\Providers\BroadcastServiceProvider::class,
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
+
+        // Added for Laravel-geo-demo
         GeneaLabs\Phpgmaps\PhpgmapsServiceProvider::class,
+        Clockwork\Support\Laravel\ClockworkServiceProvider::class,
 
     ],
 
