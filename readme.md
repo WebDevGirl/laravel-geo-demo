@@ -15,7 +15,7 @@ friends to get a list of their locations, and when you login you can see a feed 
 friends have recently been. Visiting someone's profile will show you recent public spaces of theirs that they have recently visited.
 
 ## Stories
-- As a ``Mover`` my ``current location`` should not be shared by default
+- As a ``Mover`` my ``current location`` should not be shared by default (pretend ata is coming from a mobile app)
 - As a ``Mover``, I want to be able to define my ``public spaces`` that is allowed to 
   ``broadcast`` my ``current location``
 - As a ``Mover``, I would like my ``profile`` to display a feed of my ``broadcasted public spaces``.
@@ -41,18 +41,18 @@ friends have recently been. Visiting someone's profile will show you recent publ
   - canBroadcast <-- endable/disable for broadcasting
 - **Markers** <-- space / geofence long/lat points. 
 - **Following** (user_user) <-- this generate subscriber's friend list
-- **Watching** (space_user) <-- this generate subscriber's friend feed
 - **Broadcasts** (space_user) <-- this generates mover's profile feed
   - When a mover's current_location is in a public space then it will be in the broast table
+- **Tracking**  <-- This will be the stored lat/long of where the user is 'right now'
 
 ## Manual SQL That Needs to be Translation into Laravel
 
 #### Inserting a New Geofence
 ```sql
-INSERT INTO geofences (geo_data, title, user_id) VALUES(PolygonFromText('POLYGON((34.2424235 -118.5290969, 34.2422782 -118.5290969, 34.2422771 -118.5288421, 34.24242459999999 -118.52884680000001, 34.2424235 -118.5290969))'), 'My Public Space Name',1 );
+INSERT INTO spaces (geodata, title, user_id) VALUES(PolygonFromText('POLYGON((34.2424235 -118.5290969, 34.2422782 -118.5290969, 34.2422771 -118.5288421, 34.24242459999999 -118.52884680000001, 34.2424235 -118.5290969))'), 'My Public Space Name',1 );
 ```
 #### Selecting All Public Spaces that Intersect with Movers Current Location
 ```sql
-SELECT * FROM geofences WHERE Intersects(POINT(34.2423371, -118.5289745 ), geo_data);
+SELECT * FROM spaces WHERE Intersects(POINT(34.2423371, -118.5289745 ), geodata);
 ```
 
