@@ -2,7 +2,7 @@
 
 @section('content')
 	<div class="app-header">
-		<h2>Spaces List</h2>
+		<h2>Spaces List <a class="btn btn-sm btn-info" href="{{ route('space-create') }}">Add New</a></h2>
   	</div>
 
 	@if (session('status'))
