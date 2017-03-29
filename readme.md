@@ -58,3 +58,11 @@ SELECT * FROM spaces WHERE Intersects(POINT(34.2423371, -118.5289745 ), geodata)
 - Run ``composer update``
 - Run ``php artisan key:generate``
 - Run ``php artisan migrate``
+
+# Images
+
+## Model Diagram
+https://cloud.githubusercontent.com/assets/281799/24479367/c8521918-1493-11e7-9d0a-3afaf787411e.png
+
+## Database Diagram
+https://cloud.githubusercontent.com/assets/281799/24479360/c1e66584-1493-11e7-8fd3-c0f9062123e9.png
