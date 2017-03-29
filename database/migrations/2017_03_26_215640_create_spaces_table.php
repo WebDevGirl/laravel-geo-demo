@@ -24,12 +24,12 @@ class CreateSpacesTable extends Migration
         });
       
         // Manually add in GEOMETRY type column
-        Schema::table('spaces', function(Blueprint $table)
-        {
-            DB::statement(
-                "ALTER TABLE spaces ADD geodata GEOMETRY AFTER user_id"
-            );
-        });
+        // Schema::table('spaces', function(Blueprint $table)
+        // {
+        //     DB::statement(
+        //         "ALTER TABLE spaces ADD geodata GEOMETRY AFTER user_id"
+        //     );
+        // });
     }
 
     /**

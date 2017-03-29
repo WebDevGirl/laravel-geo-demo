@@ -95,14 +95,14 @@ class BroadcastController extends Controller
     public function trackings($lat, $long)
     {
         /* Find Spaces that point intersects with */
-        $spaces = Space::whereUserId(\Auth::user()->id)->whereIntersects($lat, $long)->get();
+        //$spaces = Space::whereUserId(\Auth::user()->id)->whereIntersects($lat, $long)->get();
         
         /* Create New Broadcast for Authed User */
-        foreach($spaces as $space) {
-            \Auth::user()->broadcasts()->create([
-                'space_id' => $space->id,
-            ]);
-        }
+        // foreach($spaces as $space) {
+        //     \Auth::user()->broadcasts()->create([
+        //         'space_id' => $space->id,
+        //     ]);
+        // }
     
         return array('status' => 'success');
     }

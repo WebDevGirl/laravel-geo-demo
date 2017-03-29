@@ -24,12 +24,12 @@ class CreateMarkersTable extends Migration
         });
 
        
-        Schema::table('markers', function(Blueprint $table)
-        {
-            DB::statement(
-                "ALTER TABLE markers ADD pointdata GEOMETRY AFTER space_id"
-            );  
-        });
+        // Schema::table('markers', function(Blueprint $table)
+        // {
+        //     DB::statement(
+        //         "ALTER TABLE markers ADD pointdata GEOMETRY AFTER space_id"
+        //     );  
+        // });
     }
 
     /**

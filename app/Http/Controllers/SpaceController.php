@@ -19,8 +19,10 @@ class SpaceController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index()
-    {
-        $spaces = Space::with('user')->get();
+    {   
+        /* Eager Load Spaces w/ User */
+        $spaces = array();
+        //$spaces = Space::with('user')->get();
         return view('spaces.index')->with(compact('spaces'));
     }
 
@@ -33,14 +35,13 @@ class SpaceController extends Controller
     {
        /* Google Maps Config */
         $config = array();
-        $config['center']    = "34.2423371, -118.5289745";
-        $config['zoom'] = '18';
-        $config['drawing'] = true;
+        $config['center']       = "34.2423371, -118.5289745";
+        $config['zoom']         = '18';
+        $config['drawing']      = true;
         $config['drawingDefaultMode'] = 'polygon';
         $config['drawingModes'] = array('circle','rectangle','polygon');
-        $config['onclick'] = '';
+        $config['onclick']      = '';
       
-
         /* Add functions to listeners (set in scripts.js) */
         $config['drawingOnComplete'] = array('circle'=>'drawingOnCompleteCirlce(event)', 'polygon'=>'drawingOnCompletePolygon(event)');
         $config['drawingOnEdit'] = array('circle'=>'drawingOnEditCirlce()', 'polygon'=>'drawingOnEditPolygon()');
@@ -68,14 +69,9 @@ class SpaceController extends Controller
         );
 
         /* Generate New Space */
-        $space = \Auth::user()->spaces()->create([
-            'title' => $request->input('title'),
-            'type' => 'polygon',
-        ]);
 
         /* Add geodata and markers */
-        $geodata = json_decode($request->input('geodata'),true);
-        $space->generateGeodataAndMarkers($geodata);
+
         return redirect()->route('space', [$space]);
     }
 
@@ -87,21 +83,21 @@ class SpaceController extends Controller
      */
     public function show(Space $space)
     {
-        /* Lazy Eager Load */
-        $space->load('markers', 'user');
+        /* Lazy Eager Load space's markers and user */
+
+        /* Set a point */
 
         /* Google Maps Config */
-        $point = $space->markers->first();
+       
         $config = array();
-        $config['center'] = $point->lat.", ".$point->long;
+        $config['center'] = "34.2423371, -118.5289745"; // set to points lat long
         $config['zoom'] = '18';
         Gmaps::initialize($config);
 
         /* Create Space on Map */
-        $polygon = array();      
-        foreach($space->markers as $marker) {
-            $polygon['points'][] = $marker->lat . ', ' . $marker->long;
-        }
+        $polygon = array(); 
+        //-- For each markers, add a to polygon's points with lat, long     
+        $polygon['points'][] = "34.2423371, -118.5289745";
         $polygon['strokeColor'] = '#000099';
         $polygon['fillColor'] = '#000099';
         Gmaps::add_polygon($polygon);
