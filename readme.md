@@ -1,6 +1,6 @@
 # Laravel Geofence Demo
 
-Demonstrating use of mutators, accessors, and query scopes to support Geography MySQL 
+Demonstrating use of mutators, accessors, and query scopes to support ``GEOMETRY`` MySQL 
 Type (Demo Purposes Only). 
 
 ## PSA
