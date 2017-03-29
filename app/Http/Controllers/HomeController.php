@@ -23,8 +23,15 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $following = \Auth::user()->following;  
-        $following = ($following) ? $following->sortBy('name') : array() ; 
-        return view('home', compact('following'));
+        $user = \Auth::user();
+
+        /* Lazy Eager Load Following */
+        $user->load('following');
+        $following = $user->following;
+        
+        /* Get Feed */
+        $feed = \App\Broadcast::whereIn('user_id', $following->pluck('id'))->orderby('created_at', 'desc')->get();
+
+        return view('home', compact('following', 'feed'));
     }
 }

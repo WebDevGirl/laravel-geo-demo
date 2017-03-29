@@ -142,7 +142,7 @@ class SpacesTableSeeder extends Seeder
         ];
 
         // Grab jane user to bind all geofences to
-        $user_ids = App\User::whereIn('email',['jane@test.com', 'john@test.com'])->pluck('id')->toArray();
+        $user_ids = App\User::orderBy('id')->limit(3)->pluck('id')->toArray();
 
         // Create Geofences w/ Markers
         foreach($geofences as $index=>$geofence) {

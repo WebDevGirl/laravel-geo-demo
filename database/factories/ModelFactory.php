@@ -1,5 +1,7 @@
 <?php
 
+use Carbon\Carbon;
+
 /*
 |--------------------------------------------------------------------------
 | Model Factories
@@ -30,5 +32,12 @@ $factory->define(App\Space::class, function (Faker\Generator $faker) {
     return [
         'title' => $faker->streetName,
         'user_id' => $faker->randomElement($users),
+    ];
+});
+
+/** @var \Illuminate\Database\Eloquent\Factory $factory */
+$factory->define(App\Broadcast::class, function (Faker\Generator $faker) {
+    return [
+        'created_at' => Carbon::now()->addDays($faker->numberBetween(-10,-5))->addHours($faker->numberBetween(-12,12)),
     ];
 });

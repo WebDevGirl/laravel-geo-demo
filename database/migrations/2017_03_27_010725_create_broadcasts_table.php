@@ -17,6 +17,8 @@ class CreateBroadcastsTable extends Migration
             $table->increments('id');
             $table->integer('space_id')->unsigned();
             $table->foreign('space_id')->references('id')->on('spaces');
+            $table->integer('user_id')->unsigned();
+            $table->foreign('user_id')->references('id')->on('users');
             $table->timestamps();
         });
     }

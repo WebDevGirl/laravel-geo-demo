@@ -42,6 +42,10 @@ class Space extends Model
         return $this->hasMany('App\Marker');
     }
 
+    public function broadcasts() {
+        return $this->belongsToMany('App\User', 'broadcasts', 'space_id','user_id');
+    }
+
     /*
     |--------------------------------------------------------------------------
     | Query Scopes

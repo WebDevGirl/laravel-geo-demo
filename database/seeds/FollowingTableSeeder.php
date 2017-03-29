@@ -13,17 +13,19 @@ class FollowingTableSeeder extends Seeder
     {
     	$faker = Faker\Factory::create();
 
-    	$users = App\User::all();
+        /* Get Users with Spaces */
+    	$users = App\User::has('spaces')->get();
   		$user_ids = $users->pluck('id')->toArray();
  
     	foreach($users as $follower) {
-    		// Generate Users to Follow
-    		$following = $faker->randomElements($user_ids, $count=rand(2,9));
+            $following = $user_ids;
 
     		// Exclude Self
-    		$following = array_except($following, [$follower->id]);
+            if(($key = array_search($follower->id, $following)) !== false) {
+                unset($following[$key]);
+            }
 
-    		// Follow
+       		// Follow
     		$follower->following()->attach($following);
 
     	}

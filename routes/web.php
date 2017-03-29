@@ -25,3 +25,5 @@ Route::get('/spaces/{space}','SpaceController@show')->name('space');
 Route::get('/spaces','SpaceController@index')->name('spaces');
 Route::get('/spaces-test','SpaceController@test')->name('spaces-test');
 Route::get('/spaces-test/{lat}/{long}','SpaceController@testView')->name('spaces-test-view');
+
+Route::get('/broadcasts/{broadcast}','BroadcastController@show')->name('broadcast');

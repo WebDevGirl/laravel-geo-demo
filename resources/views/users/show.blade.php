@@ -15,8 +15,20 @@
 	@endif
 
 	<div class="col-sm-12 app-main">
-		@foreach($spaces as $space) 
-			<a href="{{ route('space', ['id'=>$space->id])}}">{{ $space->title }}</a><br>
-		@endforeach
+
+		<div class="row">
+			<div class="col-md-8">
+				<h3>Broadcast Feed</h3>
+				@foreach($broadcasts as $broadcast) 
+					@include('partials.broadcast-space')
+				@endforeach
+			</div>
+			<div class="col-md-4">
+				<h4>Spaces</h4>
+				@foreach($spaces as $space) 
+					<a href="{{ route('space', ['id'=>$space->id])}}">{{ $space->title }}</a><br>
+				@endforeach
+			</div>
+		</div>
 	</div><!-- /.app-main -->
 @endsection

@@ -7,6 +7,11 @@ use \App\User;
 
 class UserController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -21,15 +26,21 @@ class UserController extends Controller
     }
 
     /**
-     * Display the specified resource.
+     * Display users profile
      *
      * @param  User $user
      * @return \Illuminate\Http\Response
      */
     public function show(User $user)
-    {
+    {   
+        /* Lazy Eager Load Broadcasts (w/ space) and Spaces */
+        $user->load(['broadcasts' => function($q) {
+            $q->with('space')->orderBy('created_at', 'DESC');
+        }, 'spaces']);
         $spaces = $user->spaces;
-        return view('users.show')->with(compact('user', 'spaces'));
+        $broadcasts = $user->broadcasts;
+
+        return view('users.show')->with(compact('user', 'spaces', 'broadcasts'));
     }
 
     /**

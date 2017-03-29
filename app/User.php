@@ -40,4 +40,14 @@ class User extends Authenticatable
         return $this->hasMany('App\Space');
     }
 
+    public function broadcasts()
+    {
+        return $this->hasMany('App\Broadcast');
+    }
+
+    public function broadcast_spaces()
+    {
+        return $this->belongsToMany('App\Broadcast');
+    }
+
 }

@@ -3,7 +3,7 @@
 @section('content')
 	<div class="app-header">
 		<h2>User List</h2>
-  </div>
+  	</div>
 
 	@if (session('status'))
 	<div class="alert alert-warning" role="alert">
