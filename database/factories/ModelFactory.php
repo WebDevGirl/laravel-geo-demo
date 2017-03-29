@@ -38,6 +38,8 @@ $factory->define(App\Space::class, function (Faker\Generator $faker) {
 /** @var \Illuminate\Database\Eloquent\Factory $factory */
 $factory->define(App\Broadcast::class, function (Faker\Generator $faker) {
     return [
-        'created_at' => Carbon::now()->addDays($faker->numberBetween(-10,-5))->addHours($faker->numberBetween(-12,12)),
+        'created_at' => Carbon::now()
+            ->addDays($faker->numberBetween(-10,0))
+            ->addHours($faker->numberBetween(-12,12)),
     ];
 });
