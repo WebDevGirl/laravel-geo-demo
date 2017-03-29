@@ -1,6 +1,6 @@
 # Laravel Geofence Demo
 
-Demonstrating use of mutators, accessors, and model events to support Geography MySQL 
+Demonstrating use of mutators, accessors, and query scopes to support Geography MySQL 
 Type (Demo Purposes Only). 
 
 ## PSA
@@ -43,7 +43,6 @@ friends have recently been. Visiting someone's profile will show you recent publ
 - **Following** (user_user) <-- this generate subscriber's friend list
 - **Broadcasts** (space_user) <-- this generates mover's profile feed
   - When a mover's current_location is in a public space then it will be in the broast table
-- **Tracking**  <-- This will be the stored lat/long of where the user is 'right now'
 
 ## Manual SQL That Needs to be Translation into Laravel
 
