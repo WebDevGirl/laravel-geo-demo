@@ -32,16 +32,11 @@ friends have recently been. Visiting someone's profile will show you recent publ
   
 ## Tables
 - **Users**
-  - First Name
-  - Last Name
-  - Tagline
 - **Spaces** <-- geofences (polygon)
-  - Title
-  - canBroadcast <-- endable/disable for broadcasting
 - **Markers** <-- space / geofence long/lat points. 
 - **Following** (user_user) <-- this generate subscriber's friend list
 - **Broadcasts** (space_user) <-- this generates mover's profile feed
-  - When a mover's current_location is in a public space then it will be in the broast table
+  - When a mover's tracked current location is in a public space then it will add to the broadcast table
 
 ## Manual SQL That Needs to be Translation into Laravel
 
