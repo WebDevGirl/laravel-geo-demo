@@ -120,7 +120,7 @@ class SpaceController extends Controller
     }
 
     /**
-     * Display the specified resource.
+     * Test Map
      *
      * @param  Space  $space
      * @return \Illuminate\Http\Response
