@@ -19,11 +19,7 @@
 		<div class="row">
 			<div class="col-md-8">
 				<h3>Broadcast Feed</h3>
-					@include('partials.broadcast-space')
-					@include('partials.broadcast-space')
-					@include('partials.broadcast-space')
-					@include('partials.broadcast-space')
-					@include('partials.broadcast-space')
+					include('partials.broadcast-space')
 			</div>
 			<div class="col-md-4">
 				<h4>Spaces</h4>				
