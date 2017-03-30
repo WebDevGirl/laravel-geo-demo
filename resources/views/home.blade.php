@@ -8,11 +8,9 @@
 			<div class="alert alert-warning" role="alert">
 				No Broadcasts
 			</div>
-
-
-		@include('partials.broadcast-space')
-		@include('partials.broadcast-space')
-		@include('partials.broadcast-space')
+		@foreach($feed as $broadcast)
+			@include('partials.broadcast-space')
+		@endforeach
 		
 	</div><!-- /.app-main -->
 
