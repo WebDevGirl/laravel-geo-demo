@@ -23,6 +23,7 @@ class Space extends Model
      */
     protected $hidden = ['geodata'];
 
+    
     /*
     |--------------------------------------------------------------------------
     | Relationship Functions
@@ -53,9 +54,9 @@ class Space extends Model
     |
     */
 
-    // public function scopeWhereIntersects($query, $lat, $long) {
-    //     return $query->whereRaw("Intersects(POINT($lat,$long), geodata)");
-    // }
+    public function scopeWhereIntersects($query, $lat, $long) {
+        return $query->whereRaw("Intersects(POINT($lat,$long), geodata)");
+    }
 
 
     /*
@@ -65,10 +66,10 @@ class Space extends Model
     |
     */
 
-    // public function getGeodataRawAttribute()
-    // {
-    //     return $this->attributes['geodata'];
-    // }
+    public function getGeodataRawAttribute()
+    {
+        return $this->attributes['geodata'];
+    }
 
 
 
@@ -78,36 +79,36 @@ class Space extends Model
     |--------------------------------------------------------------------------
     |
     */
-    // public function generateGeodataAndMarkers($geoData, $type="polygon")
-    // {
-    //     /* Clear any previous markers */
-    //     $this->markers()->delete();
+    public function generateGeodataAndMarkers($geoData, $type="polygon")
+    {
+        /* Clear any previous markers */
+        $this->markers()->delete();
 
-    //     /* Generate Geofences coords_str and add a marker for each point in the polygon */
-    //     if ($type == "polygon") {
-    //         $coords = array();
-    //         foreach($geoData as $key => $coord) {
-    //             $coords[] = $coord['lat'] . ' ' . $coord['long'];
+        /* Generate Geofences coords_str and add a marker for each point in the polygon */
+        if ($type == "polygon") {
+            $coords = array();
+            foreach($geoData as $key => $coord) {
+                $coords[] = $coord['lat'] . ' ' . $coord['long'];
 
-    //             $marker = $this->markers()->create([
-    //                 'lat'           => $coord['lat'],
-    //                 'long'          => $coord['long'],
-    //                 'order_id'      => $key+1,
-    //             ]);
+                $marker = $this->markers()->create([
+                    'lat'           => $coord['lat'],
+                    'long'          => $coord['long'],
+                    'order_id'      => $key+1,
+                ]);
 
-    //             /* Update new marker's pointdata */
-    //             DB::statement("UPDATE `markers` SET `pointdata` = (GeomFromText('POINT(".$coord['lat'] . ' ' . $coord['long'].")')) WHERE `id` = " . $marker->id);
-    //         }
+                /* Update new marker's pointdata */
+                DB::statement("UPDATE `markers` SET `pointdata` = (GeomFromText('POINT(".$coord['lat'] . ' ' . $coord['long'].")')) WHERE `id` = " . $marker->id);
+            }
            
-    //         // Generate long/lat string
-    //         $coord_str = implode(', ', $coords);
+            // Generate long/lat string
+            $coord_str = implode(', ', $coords);
 
-    //         /* Update this geofence's geodata */
-    //         DB::statement("UPDATE `spaces` SET `geodata` = PolygonFromText('POLYGON((". $coord_str ."))') WHERE `id` = " . $this->id);   
+            /* Update this geofence's geodata */
+            DB::statement("UPDATE `spaces` SET `geodata` = PolygonFromText('POLYGON((". $coord_str ."))') WHERE `id` = " . $this->id);   
 
-    //     } else if ($type == "circle") {
-    //         //todo
-    //     }
+        } else if ($type == "circle") {
+            //todo
+        }
 
-    // }
+    }
 }

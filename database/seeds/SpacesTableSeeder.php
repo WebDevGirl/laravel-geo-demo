@@ -157,7 +157,7 @@ class SpacesTableSeeder extends Seeder
             ]);
 
             //  Generate geodata and pointdata
-            //$space->generateGeodataAndMarkers($geofence['geodata']);
+            $space->generateGeodataAndMarkers($geofence['geodata']);
         }
 
     }

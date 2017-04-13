@@ -34,12 +34,12 @@ class UserController extends Controller
     public function show(User $user)
     {   
         /* Lazy Eager Load Broadcasts (w/ space) and Spaces */
-        $spaces = array();
-        $broadcasts = array();
+        $user->load(['spaces','broadcasts' => function($q) {
+            $q->with('space.markers')->orderBy('created_at', 'desc');
+        }]);
 
-        /* Load a user's broadcasts with spaces. Order broadcasts by newest first */
-        $spaces = array();
-        $broadcasts = array();
+        $spaces = $user->spaces;
+        $broadcasts = $user->broadcasts;
 
         return view('users.show')->with(compact('user', 'spaces', 'broadcasts'));
     }
